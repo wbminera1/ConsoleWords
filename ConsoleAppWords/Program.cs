@@ -256,7 +256,7 @@ namespace ConsoleAppWords
             int idx = GetSelection("Hello", variants);
             Console.WriteLine("Variant " + idx + " selected");
         }
-        bool PlayQuiz(ref bool won)
+        bool PlayQuiz(ref bool won, ref int idxSelected)
         {
             int numVariants = 4;
             Quiz quiz;
@@ -268,8 +268,8 @@ namespace ConsoleAppWords
                 {
                     variants.Add(variant.Word);
                 }
-                int idx = GetSelection("Proper translation of '" + quiz.OriginalWord + "'", variants);
-                won = quiz.Variants[idx].Valid;
+                idxSelected = GetSelection("Proper translation of '" + quiz.OriginalWord + "'", variants);
+                won = quiz.Variants[idxSelected].Valid;
                 return true;
             }
             return false;
@@ -278,15 +278,16 @@ namespace ConsoleAppWords
         void Play()
         {
             bool won = false;
-            while (PlayQuiz(ref won))
+            int idxSelected = 0;
+            while (PlayQuiz(ref won, ref idxSelected))
             {
                 if (won)
                 {
-                    Console.WriteLine("Right !");
+                    Console.WriteLine(idxSelected + 1 +" - Right !");
                 }
                 else
                 {
-                    Console.WriteLine("Wrong...");
+                    Console.WriteLine(idxSelected + 1 + " - Wrong...");
                 }
             }
             Console.WriteLine("Game finished");
