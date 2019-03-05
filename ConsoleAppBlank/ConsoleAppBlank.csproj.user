@@ -12,6 +12,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <StartWorkingDirectory>C:\Programming\github\ConsoleWords\ConsoleAppBlank\</StartWorkingDirectory>
-    <StartArguments>tests\testa2.txt</StartArguments>
+    <StartArguments>tests\teste2.txt</StartArguments>
   </PropertyGroup>
 </Project>

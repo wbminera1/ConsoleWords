@@ -265,7 +265,7 @@ namespace ConsoleAppBlank
             List<TraningSet> traningSets = new List<TraningSet>();
 
             TraningSet traningSet = new TraningSet();
-            traningSet.Load(@"tests\test", @".txt");
+            traningSet.Load(@"tests\test", @"x.txt");
             traningSets.Add(traningSet);
 
 //             TraningSet traningSet2 = new TraningSet();
@@ -291,13 +291,38 @@ namespace ConsoleAppBlank
 
         }
 
+        void TestCompareSets()
+        {
+            Console.WriteLine("testX2.txt vs textX.txt:");
+
+            List<TraningSet> traningSets = new List<TraningSet>();
+
+            TraningSet traningSet = new TraningSet();
+            traningSet.Load(@"tests\test", @".txt");
+            traningSets.Add(traningSet);
+
+            TraningSet traningSet2 = new TraningSet();
+            traningSet2.Load(@"tests\test", @"2.txt");
+
+            Comparator comparator = new Comparator();
+            HScanIntegral integral = new HScanIntegral();
+
+            foreach(var letter in traningSet2.Set)
+            {
+                char res = comparator.Compare(traningSets, letter.Value, integral);
+                Console.WriteLine("Result: symbol '" + letter.Key + "' == " + "'" + res + "'");
+            }
+
+        }
+
         static void Main(string[] args)
         {
             Program program = new Program();
             //program.TestTrainingSet();
             //program.TestString();
             //program.TestHScanIntegral();
-            if(args.Length > 0)
+            //program.TestCompareSets();
+            if (args.Length > 0)
             {
                 program.Run(args[0]);
             }
